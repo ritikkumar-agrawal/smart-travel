@@ -52,7 +52,7 @@ function Header() {
   };
 
   return (
-    <div className="p-3 shadow-sm flex justify-between items-center px-5">
+    <div className="p-7 shadow-sm flex justify-between items-center px-12">
       {/* home icon */}
       <a href="/">
       <IoHomeOutline style={{ width: '40px', height: '40px', color: 'white'}} />
@@ -94,7 +94,9 @@ function Header() {
             </Popover>
           </div>
         ) : (
-          <button onClick={()=>setOpenDialog(true)}>Sign In</button>
+          <button className="bg-neutral-900 border border-white block rounded-none" onClick={()=>setOpenDialog(true)}>
+            Sign In
+          </button>
         )}
       </div>
       {/* dialog for google login */}

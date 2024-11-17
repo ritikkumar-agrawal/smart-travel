@@ -112,16 +112,19 @@ function CreateTrip() {
 
   return (
     <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10">
-      <h2 className="font-bold text-3xl">Tell us your travel preferences</h2>
+      <h2 className="font-bold text-3xl">Let us know your travel preferences</h2>
       <p className="mt-3 text-gray-500 text-xl">
         Just provide some basic information, and our trip planner will generate
         a customized itinerary based on your preferences.
       </p>
+
       <div className="mt-20 flex flex-col gap-9">
         <div>
           <h2 className="text-xl my-3 font-medium">
             What is Destination of choice?
           </h2>
+
+          {/* npm install react-google-places-autocomplete */}
           <GooglePlacesAutocomplete
             apiKey={import.meta.env.VITE_GOOGLE_PLACES_API_KEY}
             selectProps={{
@@ -131,18 +134,36 @@ function CreateTrip() {
                 handleInputChange("location", v);
               },
               styles: {
-                option: (provided) => ({
+                control: (provided) => ({
                   ...provided,
-                  color: "black",
+                  backgroundColor: "#171717",
+                  color: "white",
+                }),
+                input: (provided) => ({
+                  ...provided,
+                  color: "white",
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isFocused ? "#333333" : "#171717",
+                  color: "white",
+                }),
+                menu: (provided) => ({
+                  ...provided,
+                  backgroundColor: "#171717",
                 }),
                 singleValue: (provided) => ({
                   ...provided,
-                  color: "black",
+                  color: "white",
                 }),
               },
             }}
           />
+
+          {/* google places autocomplete ends  */}
+
         </div>
+
         <div>
           <h2 className="text-xl my-3 font-medium">
             How many days are you planning your trip?
@@ -150,10 +171,11 @@ function CreateTrip() {
           <Input
             placeholder={"Ex.3"}
             type="number"
-            className="text-gray-600"
+            className="bg-neutral-900 text-white placeholder-gray-400 border border-gray-600"
             onChange={(e) => handleInputChange("noOfDays", e.target.value)}
           />
         </div>
+
         <div>
           <h2 className="text-xl my-3 font-medium">What is Your Budget?</h2>
           <div className="grid grid-cols-3 gap-5 mt-5 ">
@@ -183,10 +205,9 @@ function CreateTrip() {
                 key={index}
                 onClick={() => handleInputChange("traveler", item.people)}
                 className={`p-4 border rounded-lg hover:shadow-lg cursor-pointer
-                    ${
-                      formData?.traveler == item.people &&
-                      "shadow-lg border-blue-500"
-                    }
+                    ${formData?.traveler == item.people &&
+                  "shadow-lg border-blue-500"
+                  }
                     `}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
@@ -197,11 +218,12 @@ function CreateTrip() {
           </div>
         </div>
       </div>
+
       <div className="my-10 justify-end flex">
         <button
           disabled={loading}
           onClick={OnGenerateTrip}
-          className="bg-gray-600"
+          className="bg-white border border-white block rounded-none text-black"
         >
           {loading ? (
             <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />

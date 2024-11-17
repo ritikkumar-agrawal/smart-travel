@@ -21,6 +21,7 @@ function PlaceCardItem({place}) {
       const PhotoUrl = PHOTO_REF_URL.replace("{NAME}",res.data.places[0].photos[3].name);
       setPhotoUrl(PhotoUrl);
     })
+    
   }
   return (
     <Link to={"https://www.google.com/maps/search/?api=1&query=" +

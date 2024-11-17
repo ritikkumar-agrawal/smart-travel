@@ -27,9 +27,13 @@ function UserTripCardItem({trip}) {
     <div className='hover:scale-105 transition-all hover:shadow-md'>
       <img src={photoUrl?photoUrl : "/placeholder.jpg"} className='object- rounded-xl h-[300px] w-[600px]' />
       <div>
-        <h2 className='font-bold text-lg'>{trip?.userSelection?.location?.label}</h2>
-        <h2 className='text-sm text-gray-400'>{trip?.userSelection?.noOfDays} Days trip with {trip?.userSelection?.budget} Budget</h2>
-      </div>
+  <h2 className="font-bold text-lg">{trip?.userSelection?.location?.label}</h2>
+  <h2 className="text-sm text-gray-400">
+    {trip?.userSelection?.noOfDays} Days trip with {trip?.userSelection?.budget} Budget,{" "}
+    {trip?.userSelection?.traveler === "1" ? "Solo" : `with ${trip?.userSelection?.traveler}`}
+  </h2>
+</div>
+
     </div>
     </Link>
   )

@@ -21,6 +21,7 @@ function Viewtrip() {
         const docSnap = await getDoc(docRef);
 
         if(docSnap.exists()){
+          // it stores the data of the trip in the state
             setTrips(docSnap.data());
         }
         else{
@@ -34,6 +35,7 @@ function Viewtrip() {
 
       {/* Recommended Hotels */}
         <Hotels trip={trips}/>
+        <hr className='my-5'  />
 
       {/* Daily Plans */}
       <PlacesToVisit trip={trips}/>

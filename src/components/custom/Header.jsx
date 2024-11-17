@@ -30,8 +30,7 @@ function Header() {
   });
 
   const GetUserProfile = (tokenInfo) => {
-    axios
-      .get(
+    axios.get(
         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
         {
           headers: {
@@ -62,12 +61,12 @@ function Header() {
         {user ? (
           <div className="flex items-center gap-3">
             <a href="/create-trip" >
-            <button variant="outline" className="rounded-full text-white bg-gray-600">
+            <button variant="outline" className="bg-neutral-900 border border-white rounded-none text-white px-3 py-2">
               + Create Trip
             </button>
             </a>
             <a href="/my-trips">
-            <button variant="outline" className="rounded-full text-white bg-gray-600">
+            <button variant="outline" className="bg-neutral-900 border border-white rounded-none text-white px-3 py-2">
               My Trips
             </button>
             </a>
@@ -103,14 +102,13 @@ function Header() {
       <Dialog open={openDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogDescription>
-              <img src="/logo.svg" />
-              <h2 className="font-bold text-lg mt-7">Sign In With Google</h2>
+          <DialogDescription>
+              <h2 className="font-bold text-black mt-7">Sign In With Google</h2>
               <p>Sign in to the App with Google authentication securely</p>
 
               <button
                 onClick={login}
-                className="w-full mt-5 flex gap-4 items-center"
+                className="w-full mt-5 flex gap-4 items-center text-white"
               >
                 <FcGoogle className="h-7 w-7" />
                 Sign In with Google

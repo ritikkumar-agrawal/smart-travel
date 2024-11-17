@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { AI_PROMPT, SelectBudgetOptions, SelectTravelesList } from "./options";
 import { toast } from "sonner";
 import { chatSession } from "../../service/AIModel";
+// shadcn for auth dialogue
 import {
   Dialog,
   DialogContent,
@@ -22,13 +23,14 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 function CreateTrip() {
+  // to maintain the state of the selected place
   const [place, setPlace] = useState(null);
-
+  // to maintain the state of the form (location, noOfDays, budget, traveler)
   const [formData, setFormdata] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  // handling the input change and setting the form data for the selected location, noOfDays, budget, traveler
   const handleInputChange = (name, value) => {
     setFormdata({
       ...formData,
@@ -62,10 +64,10 @@ function CreateTrip() {
       return;
     }
     setLoading(true);
-    const FINAL_PROMPT = AI_PROMPT.replace(
-      "{location}",
-      formData?.location?.label
-    )
+    // ai prompt with the user selected location, noOfDays, budget, traveler
+    const FINAL_PROMPT = AI_PROMPT
+    // replace these with user given value
+      .replace("{location}",formData?.location?.label)
       .replace("{totalDays}", formData?.noOfDays)
       .replace("{budget}", formData?.budget)
       .replace("{traveler}", formData?.traveler);
@@ -90,8 +92,7 @@ function CreateTrip() {
   };
 
   const GetUserProfile = (tokenInfo) => {
-    axios
-      .get(
+    axios.get(
         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`,
         {
           headers: {
@@ -131,6 +132,7 @@ function CreateTrip() {
               place,
               onChange: (v) => {
                 setPlace(v);
+                // setting the location in the form data state on selection of the place
                 handleInputChange("location", v);
               },
               styles: {
@@ -183,8 +185,9 @@ function CreateTrip() {
               <div
                 key={index}
                 onClick={() => handleInputChange("budget", item.title)}
-                className={`p-4 border rounded-lg hover:shadow-lg cursor-pointer
-                ${formData?.budget == item.title && "shadow-lg border-blue-500"}
+                className={`
+                  p-4 border rounded-lg hover:shadow-lg cursor-pointer
+                  ${formData?.budget == item.title && "shadow-lg border-blue-500"}
                     `}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
@@ -204,10 +207,9 @@ function CreateTrip() {
               <div
                 key={index}
                 onClick={() => handleInputChange("traveler", item.people)}
-                className={`p-4 border rounded-lg hover:shadow-lg cursor-pointer
-                    ${formData?.traveler == item.people &&
-                  "shadow-lg border-blue-500"
-                  }
+                className={`
+                  p-4 border rounded-lg hover:shadow-lg cursor-pointer
+                    ${formData?.traveler == item.people && "shadow-lg border-blue-500"}
                     `}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
@@ -236,13 +238,12 @@ function CreateTrip() {
         <DialogContent>
           <DialogHeader>
             <DialogDescription>
-              <img src="/logo.svg" />
-              <h2 className="font-bold text-lg mt-7">Sign In With Google</h2>
+              <h2 className="font-bold text-black mt-7">Sign In With Google</h2>
               <p>Sign in to the App with Google authentication securely</p>
 
               <button
                 onClick={login}
-                className="w-full mt-5 flex gap-4 items-center"
+                className="w-full mt-5 flex gap-4 items-center text-white"
               >
                 <FcGoogle className="h-7 w-7" />
                 Sign In with Google

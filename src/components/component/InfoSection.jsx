@@ -6,12 +6,23 @@ import { PHOTO_REF_URL } from "../../service/GlobalApi";
 
 function InfoSection({ trip }) {
 
+  
   const [photoUrl,setPhotoUrl] = useState(); 
-
+  
   useEffect(() => {
     trip&&GetPlacePhoto();
   },[trip]);
-
+  
+  const handleShare = () => {
+    const currentURL = window.location.href; // Fetch the current page URL
+    navigator.clipboard.writeText(currentURL) // Copy it to the clipboard
+      .then(() => {
+        alert("URL copied to clipboard!"); // Notify user
+      })
+      .catch((err) => {
+        console.error("Failed to copy URL: ", err);
+      });
+  };
   const GetPlacePhoto = async() => {
     const data = {
       textQuery:trip?.userSelection?.location?.label
@@ -20,6 +31,7 @@ function InfoSection({ trip }) {
       const PhotoUrl = PHOTO_REF_URL.replace("{NAME}",res.data.places[0].photos[3].name);
       setPhotoUrl(PhotoUrl);
     })
+    // console.log("trip is : ", trip);
   }
   return (
     <div>
@@ -33,18 +45,18 @@ function InfoSection({ trip }) {
             {trip?.userSelection?.location?.label}
           </h2>
           <div className="flex gap-5">
-            <h2 className="p-1 px-3 bg-gray-500 rounded-full text-sm md:text-md">
-              📅 {trip?.userSelection?.noOfDays} Day
+            <h2 className="p-1 px-3 bg-black-500 border border-white-1px text-sm md:text-md">
+              📅 {trip?.userSelection?.noOfDays} {trip?.userSelection?.noOfDays > 1 ? "Days" : "Day"}
             </h2>
-            <h2 className="p-1 px-3 bg-gray-500 rounded-full text-sm md:text-md">
+            <h2 className="p-1 px-3 bg-black-500 border border-white-1px text-sm md:text-md">
               💰 {trip?.userSelection?.budget} Budget
             </h2>
-            <h2 className="p-1 px-3 bg-gray-500 rounded-full text-sm md:text-md">
-              👥 No. of Traveller: {trip?.userSelection?.traveler}
+            <h2 className="p-1 px-3 bg-black-500 border border-white-1px text-sm md:text-md">
+              🧑‍🤝‍🧑 No. of Traveller: {trip?.userSelection?.traveler}
             </h2>
           </div>
         </div>
-        <button><IoIosSend /></button>
+        <button onClick={handleShare} className="border border-white" ><IoIosSend /></button>
       </div>
     </div>
   );

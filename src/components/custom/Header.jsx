@@ -51,7 +51,7 @@ function Header() {
   };
 
   return (
-    <div className="p-7 shadow-sm flex justify-between items-center px-12">
+    <div className="p-3 shadow-sm flex justify-between items-center px-5">
       {/* home icon */}
       <a href="/">
       <IoHomeOutline style={{ width: '40px', height: '40px', color: 'white'}} />

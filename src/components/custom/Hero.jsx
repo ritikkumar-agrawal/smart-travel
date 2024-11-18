@@ -8,18 +8,29 @@ function Hero() {
         <span className="text-[#ef4444]">
           Get into Your Next Adventure with AI{" "}
         </span>
-        <p className="font-medium">
+        <p className="font-medium py-4">
           personalized{" "}
           <span
             style={{
               color: "#fde047",
-              textDecoration: "underline",
+              // textDecoration: "underline",
               textDecorationThickness: "thin",
+              // display: "inline-block",
             }}
           >
             Itineraries
           </span>{" "}
-          at Your Fingertips
+          <span
+            style={{
+              // color: "#fde047",
+              // textDecoration: "underline",
+              // textDecorationThickness: "thin",
+              display: "inline-block",
+              marginTop: "1rem",
+            }}
+          >
+            at Your Fingertips
+          </span>
         </p>
       </h1>
       <p className="text-sm md:text-base lg:text-xl text-gray-500 text-center mt-5">

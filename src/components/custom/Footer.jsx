@@ -6,7 +6,7 @@ function Footer() {
       {/* <hr /> */}
       <hr />
       <br />
-      <h2 className='text-center text-gray-400'> &lt; Built by : Ritik &gt; </h2>
+      <h2 className='text-center text-gray-400'> &lt; Built by : Tarini &gt; </h2>
       <h2 className='text-center text-gray-400'> Support the development by Starring it ⭐</h2>
       <div className="flex justify-center py-2">
         <a  href="https://github.com/ritikkumar-agrawal/smart-travel">

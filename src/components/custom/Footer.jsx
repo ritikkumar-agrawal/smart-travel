@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <div className='my-7'>
-      {/* <hr /> */}
+      {/* <hr /> */} 
       <hr />
       <br />
       <h2 className='text-center text-gray-400'> &lt; Built by : Tarini, Ritik &gt; </h2>
